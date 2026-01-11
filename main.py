@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 app = FastAPI()
 
@@ -20,6 +20,13 @@ def root():
 @app.get('/users')
 def get_users():
     return {"users": users_db}
+
+@app.get('/users/search')
+def search_users(name: Optional[str] = None, skip: int = 0, limit: int = 10):
+    results = users_db
+    if name:
+        results = [u for u in users_db if name.lower() in u.name.lower()]
+    return {"users": results[skip:skip + limit]}
 
 @app.post('/users')
 def create_user(user: User):
