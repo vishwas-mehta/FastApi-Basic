@@ -32,3 +32,11 @@ def get_user(user_id: int):
         if user.id == user_id:
             return {"user": user}
     return {"error": "User not found"}
+
+@app.delete('/users/{user_id}')
+def delete_user(user_id: int):
+    for i, user in enumerate(users_db):
+        if user.id == user_id:
+            deleted_user = users_db.pop(i)
+            return {"message": "User deleted", "user": deleted_user}
+    return {"error": "User not found"}
