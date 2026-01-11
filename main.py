@@ -25,3 +25,10 @@ def get_users():
 def create_user(user: User):
     users_db.append(user)
     return {"message": "User created successfully", "user": user}
+
+@app.get('/users/{user_id}')
+def get_user(user_id: int):
+    for user in users_db:
+        if user.id == user_id:
+            return {"user": user}
+    return {"error": "User not found"}
