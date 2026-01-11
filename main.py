@@ -47,3 +47,11 @@ def delete_user(user_id: int):
             deleted_user = users_db.pop(i)
             return {"message": "User deleted", "user": deleted_user}
     return {"error": "User not found"}
+
+@app.put('/users/{user_id}')
+def update_user(user_id: int, updated_user: User):
+    for i, user in enumerate(users_db):
+        if user.id == user_id:
+            users_db[i] = updated_user
+            return {"message": "User updated", "user": updated_user}
+    return {"error": "User not found"}
