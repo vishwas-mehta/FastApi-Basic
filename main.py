@@ -20,3 +20,8 @@ def root():
 @app.get('/users')
 def get_users():
     return {"users": users_db}
+
+@app.post('/users')
+def create_user(user: User):
+    users_db.append(user)
+    return {"message": "User created successfully", "user": user}
