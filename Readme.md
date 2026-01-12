@@ -3,9 +3,12 @@
 A simple FastAPI learning project demonstrating basic API concepts.
 
 ## Features
-- Basic CRUD operations
+- Complete CRUD operations (Create, Read, Update, Delete)
 - Pydantic models for data validation
 - Path and query parameters
+- HTTPException for proper error handling
+- Input validation with Field constraints
+- API documentation with Swagger UI
 
 ## Getting Started
 
@@ -14,7 +17,30 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
+## API Documentation
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
+
 ## API Endpoints
-- `GET /` - Hello World
-- `POST /` - Create resource
-- `PUT /` - Update resource
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Welcome message |
+| GET | `/health` | Health check |
+| GET | `/users` | Get all users |
+| GET | `/users/search` | Search users with query params |
+| GET | `/users/{user_id}` | Get user by ID |
+| POST | `/users` | Create new user |
+| PUT | `/users/{user_id}` | Update user completely |
+| PATCH | `/users/{user_id}` | Partial user update |
+| DELETE | `/users/{user_id}` | Delete user |
+
+## Example Request
+
+```json
+{
+  "id": 1,
+  "name": "John Doe",
+  "description": "A sample user"
+}
+```
