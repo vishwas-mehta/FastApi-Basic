@@ -11,6 +11,10 @@ users_db: List[User] = []
 def root():
     return {"message": "Welcome to FastAPI Basic Learning"}
 
+@app.get('/health')
+def health_check():
+    return {"status": "healthy", "users_count": len(users_db)}
+
 @app.get('/users')
 def get_users():
     return {"users": users_db}
