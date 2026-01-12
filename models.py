@@ -1,15 +1,15 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 
 class User(BaseModel):
-    """User model with basic fields"""
-    id: int
-    name: str
-    description: str
+    """User model with basic fields and validation"""
+    id: int = Field(..., gt=0, description="User ID must be positive")
+    name: str = Field(..., min_length=1, max_length=100, description="User name")
+    description: str = Field(..., min_length=1, max_length=500, description="User description")
 
 
 class UserUpdate(BaseModel):
     """Model for partial user updates"""
-    name: Optional[str] = None
-    description: Optional[str] = None
+    name: Optional[str] = Field(None, min_length=1, max_length=100)
+    description: Optional[str] = Field(None, min_length=1, max_length=500)
