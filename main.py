@@ -2,7 +2,13 @@ from fastapi import FastAPI, HTTPException, status
 from typing import List, Optional
 from models import User, UserUpdate
 
-app = FastAPI()
+app = FastAPI(
+    title="FastAPI Basic Learning",
+    description="A simple REST API for learning FastAPI fundamentals",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc"
+)
 
 # In-memory database
 users_db: List[User] = []
