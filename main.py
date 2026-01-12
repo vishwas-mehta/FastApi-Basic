@@ -1,14 +1,8 @@
 from fastapi import FastAPI, HTTPException, status
-from pydantic import BaseModel
 from typing import List, Optional
+from models import User, UserUpdate
 
 app = FastAPI()
-
-# Pydantic model for User
-class User(BaseModel):
-    id: int
-    name: str
-    description: str
 
 # In-memory database
 users_db: List[User] = []
@@ -59,3 +53,15 @@ def update_user(user_id: int, updated_user: User):
             users_db[i] = updated_user
             return {"message": "User updated", "user": updated_user}
     raise HTTPException(status_code=404, detail="User not found")
+
+@app.patch('/users/{user_id}')
+def partial_update_user(user_id: int, user_update: UserUpdate):
+    for i, user in enumerate(users_db):
+        if user.id == user_id:
+            if user_update.name is not None:
+                users_db[i] = User(id=user.id, name=user_update.name, description=user.description)
+            if user_update.description is not None:
+                users_db[i] = User(id=users_db[i].id, name=users_db[i].name, description=user_update.description)
+            return {"message": "User partially updated", "user": users_db[i]}
+    raise HTTPException(status_code=404, detail="User not found")
+
