@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 from typing import List, Optional
 
@@ -28,7 +28,7 @@ def search_users(name: Optional[str] = None, skip: int = 0, limit: int = 10):
         results = [u for u in users_db if name.lower() in u.name.lower()]
     return {"users": results[skip:skip + limit]}
 
-@app.post('/users')
+@app.post('/users', status_code=status.HTTP_201_CREATED)
 def create_user(user: User):
     # Check if user with same ID already exists
     for existing_user in users_db:
@@ -44,7 +44,7 @@ def get_user(user_id: int):
             return {"user": user}
     raise HTTPException(status_code=404, detail="User not found")
 
-@app.delete('/users/{user_id}')
+@app.delete('/users/{user_id}', status_code=status.HTTP_200_OK)
 def delete_user(user_id: int):
     for i, user in enumerate(users_db):
         if user.id == user_id:
