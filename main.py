@@ -10,8 +10,12 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# In-memory database
-users_db: List[User] = []
+# In-memory database with sample data
+users_db: List[User] = [
+    User(id=1, name="John Doe", description="Software developer"),
+    User(id=2, name="Jane Smith", description="Data scientist"),
+    User(id=3, name="Bob Johnson", description="DevOps engineer")
+]
 
 @app.get('/')
 def root():
