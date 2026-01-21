@@ -36,6 +36,7 @@ def health_check():
 
 @app.get('/users')
 def get_users():
+    """Retrieve all users from the database."""
     return {"users": users_db}
 
 @app.get('/users/search')
