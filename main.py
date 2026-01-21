@@ -83,6 +83,7 @@ def update_user(user_id: int, updated_user: User):
 
 @app.patch('/users/{user_id}')
 def partial_update_user(user_id: int, user_update: UserUpdate):
+    """Partially update a user by their ID."""
     for i, user in enumerate(users_db):
         if user.id == user_id:
             if user_update.name is not None:
