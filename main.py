@@ -48,6 +48,7 @@ def search_users(name: Optional[str] = None, skip: int = 0, limit: int = 10):
 
 @app.post('/users', status_code=status.HTTP_201_CREATED)
 def create_user(user: User):
+    """Create a new user in the database."""
     # Check if user with same ID already exists
     for existing_user in users_db:
         if existing_user.id == user.id:
