@@ -1,3 +1,10 @@
+"""
+FastAPI Basic Learning Application
+
+A simple REST API demonstrating FastAPI fundamentals including
+CRUD operations, data validation, and proper error handling.
+"""
+
 from fastapi import FastAPI, HTTPException, status
 from typing import List, Optional
 from models import User, UserUpdate
