@@ -65,6 +65,7 @@ def get_user(user_id: int):
 
 @app.delete('/users/{user_id}', status_code=status.HTTP_200_OK)
 def delete_user(user_id: int):
+    """Delete a user by their ID."""
     for i, user in enumerate(users_db):
         if user.id == user_id:
             deleted_user = users_db.pop(i)
