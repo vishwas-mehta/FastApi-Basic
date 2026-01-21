@@ -74,6 +74,7 @@ def delete_user(user_id: int):
 
 @app.put('/users/{user_id}')
 def update_user(user_id: int, updated_user: User):
+    """Update a user completely by their ID."""
     for i, user in enumerate(users_db):
         if user.id == user_id:
             users_db[i] = updated_user
