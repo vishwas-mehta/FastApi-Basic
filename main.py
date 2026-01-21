@@ -26,6 +26,7 @@ users_db: List[User] = [
 
 @app.get('/')
 def root():
+    """Root endpoint returning welcome message."""
     return {"message": "Welcome to FastAPI Basic Learning"}
 
 @app.get('/health')
