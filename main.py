@@ -31,6 +31,7 @@ def root():
 
 @app.get('/health')
 def health_check():
+    """Health check endpoint returning API status."""
     return {"status": "healthy", "users_count": len(users_db)}
 
 @app.get('/users')
