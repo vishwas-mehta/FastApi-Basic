@@ -14,4 +14,5 @@ class User(BaseModel):
 class UserUpdate(BaseModel):
     """Model for partial user updates"""
     name: Optional[str] = Field(None, min_length=1, max_length=100)
+    email: Optional[str] = Field(None, description="User email address")
     description: Optional[str] = Field(None, min_length=1, max_length=500)
