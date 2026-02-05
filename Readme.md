@@ -31,6 +31,7 @@ uvicorn main:app --reload
 |--------|----------|-------------|
 | GET | `/` | Welcome message |
 | GET | `/health` | Health check |
+| GET | `/stats` | API statistics |
 | GET | `/users` | Get all users |
 | GET | `/users/search` | Search users with query params |
 | GET | `/users/{user_id}` | Get user by ID |
