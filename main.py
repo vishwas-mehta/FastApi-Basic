@@ -37,6 +37,12 @@ def health_check():
     """Health check endpoint returning API status."""
     return {"status": "healthy", "users_count": len(users_db)}
 
+@app.get('/stats')
+def get_stats():
+    """Return API statistics including user count and active users."""
+    active_count = sum(1 for u in users_db if u.is_active)
+    return {"total_users": len(users_db), "active_users": active_count, "api_version": API_VERSION}
+
 @app.get('/users')
 def get_users():
     """Retrieve all users from the database."""
