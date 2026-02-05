@@ -50,10 +50,18 @@ def get_users():
 
 @app.get('/users/search')
 def search_users(name: Optional[str] = None, skip: int = 0, limit: int = 10):
+    """
+    Search users by name with pagination support.
+    
+    Args:
+        name: Optional name filter (case-insensitive partial match)
+        skip: Number of records to skip (default: 0)
+        limit: Maximum number of records to return (default: 10)
+    """
     results = users_db
     if name:
         results = [u for u in users_db if name.lower() in u.name.lower()]
-    return {"users": results[skip:skip + limit]}
+    return {"users": results[skip:skip + limit], "total": len(results)}
 
 @app.post('/users', status_code=status.HTTP_201_CREATED)
 def create_user(user: User):
