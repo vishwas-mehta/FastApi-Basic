@@ -46,6 +46,7 @@ uvicorn main:app --reload
 {
   "id": 1,
   "name": "John Doe",
+  "email": "john.doe@example.com",
   "description": "A sample user"
 }
 ```
