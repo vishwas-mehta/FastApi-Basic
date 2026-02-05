@@ -22,9 +22,9 @@ app = FastAPI(
 
 # In-memory database with sample data
 users_db: List[User] = [
-    User(id=1, name="John Doe", description="Software developer"),
-    User(id=2, name="Jane Smith", description="Data scientist"),
-    User(id=3, name="Bob Johnson", description="DevOps engineer")
+    User(id=1, name="John Doe", email="john.doe@example.com", description="Software developer"),
+    User(id=2, name="Jane Smith", email="jane.smith@example.com", description="Data scientist"),
+    User(id=3, name="Bob Johnson", email="bob.johnson@example.com", description="DevOps engineer")
 ]
 
 @app.get('/')
