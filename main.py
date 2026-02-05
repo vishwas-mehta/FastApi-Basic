@@ -9,10 +9,13 @@ from fastapi import FastAPI, HTTPException, status
 from typing import List, Optional
 from models import User, UserUpdate
 
+# API Version constant
+API_VERSION = "1.0.0"
+
 app = FastAPI(
     title="FastAPI Basic Learning",
     description="A simple REST API for learning FastAPI fundamentals",
-    version="1.0.0",
+    version=API_VERSION,
     docs_url="/docs",
     redoc_url="/redoc"
 )
