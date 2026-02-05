@@ -75,6 +75,7 @@ def create_user(user: User):
 
 @app.get('/users/{user_id}')
 def get_user(user_id: int):
+    """Retrieve a specific user by their ID."""
     for user in users_db:
         if user.id == user_id:
             return {"user": user}
