@@ -39,14 +39,3 @@ uvicorn main:app --reload
 | PUT | `/users/{user_id}` | Update user completely |
 | PATCH | `/users/{user_id}` | Partial user update |
 | DELETE | `/users/{user_id}` | Delete user |
-
-## Example Request
-
-```json
-{
-  "id": 1,
-  "name": "John Doe",
-  "email": "john.doe@example.com",
-  "description": "A sample user"
-}
-```
