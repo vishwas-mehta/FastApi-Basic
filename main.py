@@ -98,7 +98,8 @@ def update_user(user_id: int, updated_user: User):
             users_db[i] = updated_user
             return {"message": "User updated", "user": updated_user}
     raise HTTPException(status_code=404, detail="User not found")
-
+    
+# patch api
 @app.patch('/users/{user_id}')
 def partial_update_user(user_id: int, user_update: UserUpdate):
     """Partially update a user by their ID."""
