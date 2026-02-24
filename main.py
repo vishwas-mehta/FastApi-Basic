@@ -86,6 +86,17 @@ def get_user_count():
         role_counts[u.role] = role_counts.get(u.role, 0) + 1
     return {"total": len(users_db), "by_role": role_counts}
 
+@app.get('/users/export')
+def export_users():
+    """Export all users in a simple CSV format."""
+    csv_data = "id,name,email,description,is_active,role\n"
+    for u in users_db:
+        email = u.email if u.email else ""
+        csv_data += f"{u.id},{u.name},{email},{u.description},{u.is_active},{u.role}\n"
+    
+    from fastapi.responses import PlainTextResponse
+    return PlainTextResponse(content=csv_data, media_type="text/csv")
+
 @app.get('/users')
 def get_users(sort_by_name: bool = False):
     """Retrieve all users from the database, optionally sorted by name."""
