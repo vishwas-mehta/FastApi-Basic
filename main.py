@@ -139,3 +139,12 @@ def partial_update_user(user_id: int, user_update: UserUpdate):
             return {"message": "User partially updated", "user": users_db[i]}
     raise HTTPException(status_code=404, detail="User not found")
 
+@app.patch('/users/{user_id}/deactivate')
+def deactivate_user(user_id: int):
+    """Deactivate a user by their ID."""
+    for i, user in enumerate(users_db):
+        if user.id == user_id:
+            users_db[i].is_active = False
+            return {"message": "User deactivated", "user": users_db[i]}
+    raise HTTPException(status_code=404, detail="User not found")
+
