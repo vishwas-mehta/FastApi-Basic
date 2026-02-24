@@ -8,6 +8,7 @@ class User(BaseModel):
     id: int = Field(..., gt=0, description="User ID must be positive")
     name: str = Field(..., min_length=1, max_length=100, description="User name")
     email: Optional[str] = Field(None, description="User email address")
+    phone: Optional[str] = Field(None, pattern=r"^\+?[1-9]\d{1,14}$", description="E.164 phone number format")
     description: str = Field(..., min_length=1, max_length=500, description="User description")
     is_active: bool = Field(default=True, description="User active status")
     role: str = Field(default="user", description="User role (user, admin, moderator)")
