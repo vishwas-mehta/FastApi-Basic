@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import Optional
+from datetime import datetime
 
 
 class User(BaseModel):
@@ -9,6 +10,7 @@ class User(BaseModel):
     email: Optional[str] = Field(None, description="User email address")
     description: str = Field(..., min_length=1, max_length=500, description="User description")
     is_active: bool = Field(default=True, description="User active status")
+    created_at: datetime = Field(default_factory=datetime.now, description="Account creation timestamp")
 
 
 class UserUpdate(BaseModel):
