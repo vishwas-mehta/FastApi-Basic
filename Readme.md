@@ -35,4 +35,9 @@ uvicorn main:app --reload
 | POST | `/users` | Create new user |
 | PUT | `/users/{user_id}` | Update user completely |
 | PATCH | `/users/{user_id}` | Partial user update |
+| GET | `/users/active` | Get active users |
+| GET | `/users/count` | Get user statistics |
+| GET | `/api/info` | API metadata |
+| GET | `/users/export` | Export users to CSV |
+| PATCH | `/users/{user_id}/deactivate` | Deactivate user |
 | DELETE | `/users/{user_id}` | Delete user |
