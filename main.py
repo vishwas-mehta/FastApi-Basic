@@ -76,6 +76,8 @@ def create_user(user: User):
     for existing_user in users_db:
         if existing_user.id == user.id:
             raise HTTPException(status_code=400, detail="User with this ID already exists")
+        if user.email and existing_user.email == user.email:
+            raise HTTPException(status_code=400, detail="User with this email already exists")
     users_db.append(user)
     return {"message": "User created successfully", "user": user}
 
