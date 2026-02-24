@@ -49,6 +49,14 @@ def get_active_users():
     active = [u for u in users_db if u.is_active]
     return {"users": active, "count": len(active)}
 
+@app.get('/users/count')
+def get_user_count():
+    """Return the total number of users and breakdown by role."""
+    role_counts = {}
+    for u in users_db:
+        role_counts[u.role] = role_counts.get(u.role, 0) + 1
+    return {"total": len(users_db), "by_role": role_counts}
+
 @app.get('/users')
 def get_users():
     """Retrieve all users from the database."""
