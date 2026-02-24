@@ -69,8 +69,10 @@ def get_user_count():
     return {"total": len(users_db), "by_role": role_counts}
 
 @app.get('/users')
-def get_users():
-    """Retrieve all users from the database."""
+def get_users(sort_by_name: bool = False):
+    """Retrieve all users from the database, optionally sorted by name."""
+    if sort_by_name:
+        return {"users": sorted(users_db, key=lambda u: u.name.lower())}
     return {"users": users_db}
 
 @app.get('/users/search')
