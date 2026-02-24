@@ -8,7 +8,15 @@ CRUD operations, data validation, and proper error handling.
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
+import logging
 from models import User, UserUpdate
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 # API Version constant
 API_VERSION = "1.0.0"
