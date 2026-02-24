@@ -19,3 +19,11 @@ class UserUpdate(BaseModel):
     name: Optional[str] = Field(None, min_length=1, max_length=100)
     email: Optional[str] = Field(None, description="User email address")
     description: Optional[str] = Field(None, min_length=1, max_length=500)
+
+
+class UserResponse(BaseModel):
+    """Model for user responses hiding sensitive information"""
+    id: int
+    name: str
+    description: str
+    role: str
