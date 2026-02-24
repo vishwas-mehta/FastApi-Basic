@@ -37,6 +37,17 @@ def health_check():
     """Health check endpoint returning API status."""
     return {"status": "healthy", "users_count": len(users_db)}
 
+@app.get('/api/info')
+def api_info():
+    """Return API metadata and configuration."""
+    return {
+        "name": "FastAPI Basic Learning",
+        "description": "A simple REST API for learning FastAPI fundamentals",
+        "version": API_VERSION,
+        "author": "Vishwas",
+        "endpoints": ["/health", "/stats", "/users", "/api/info"]
+    }
+
 @app.get('/stats')
 def get_stats():
     """Return API statistics including user count and active users."""
