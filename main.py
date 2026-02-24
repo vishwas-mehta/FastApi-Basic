@@ -43,6 +43,12 @@ def get_stats():
     active_count = sum(1 for u in users_db if u.is_active)
     return {"total_users": len(users_db), "active_users": active_count, "api_version": API_VERSION}
 
+@app.get('/users/active')
+def get_active_users():
+    """Retrieve only active users from the database."""
+    active = [u for u in users_db if u.is_active]
+    return {"users": active, "count": len(active)}
+
 @app.get('/users')
 def get_users():
     """Retrieve all users from the database."""
